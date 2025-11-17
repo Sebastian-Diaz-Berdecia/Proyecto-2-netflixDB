@@ -92,6 +92,6 @@ HAVING s.titulo = 'Stranger Things'
 * R// La duración total de todos los episodios de la serie "Stranger Things" es de 1227 min.
 
 >[!IMPORTANT]
->Este análisis te permitirá entender el compromiso temporal necesario para ver una serie completa.
+>Este análisis nos permitirá entender el compromiso temporal necesario para ver una serie completa.
 
 ---
