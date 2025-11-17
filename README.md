@@ -31,6 +31,8 @@ ORDER BY cantidad_series DESC
 | Animación         | 1                  |
 | Biografía         | 1                  |
 
+* R// Los géneros mas prevalentes en la base de datos son: Ciencia ficcion: 3 series,  Drama: 2 series y Drama histórico: 2 series.
+
 >[!IMPORTANT]
 > Esta consulta SQL nos permite ver cuántas series hay por cada género dentro de la base de datos NetflixDB. Agrupando las series por su género y contándolas, podemos identificar cuáles géneros son más prevalentes.
 
@@ -54,6 +56,8 @@ LIMIT 3
 | Game of Thrones  | 9.16667     | 12                     |
 | Peaky Blinders   | 9.04545     | 11                     |
 
+* R// Las series con mayor rating imdb son: Arcane, Game of Thrones y Peaky Blinders
+
 >[!IMPORTANT]
 > Con esta consulta, identificamos las tres series con el mayor rating IMDB 
 en la base de datos y contamos cuántos episodios tiene cada una de ellas, combinando información de las tablas Series y Episodios.
@@ -61,7 +65,7 @@ en la base de datos y contamos cuántos episodios tiene cada una de ellas, combi
 #
 
 ### 3. ¿Cuál es la duración total de todos los episodios para la serie "Stranger Things"? 
-Alternativa 1: Usando la clausula WHERE.
+* Alternativa 1: Usando la clausula WHERE.
 
 ```sql
 SELECT s.titulo, SUM(e.duracion) AS "Duracion total (min)"
@@ -71,7 +75,7 @@ ON s.serie_id = e.serie_id
 WHERE s.titulo = 'Stranger Things'
 GROUP BY  s.titulo
 ```
-Alternativa 2: Usando la clausula HAVING.
+* Alternativa 2: Usando la clausula HAVING.
 ```sql
 SELECT s.titulo, SUM(e.duracion) AS "Duracion total (min)"
 FROM series AS s
@@ -84,6 +88,8 @@ HAVING s.titulo = 'Stranger Things'
 | Título           | Duración total (min) |
 |:------------------:|:-----------------------:|
 | Stranger Things   | 1227                 |
+
+* R// La duración total de todos los episodios de la serie "Stranger Things" es de 1227 min.
 
 >[!IMPORTANT]
 >Este análisis te permitirá entender el compromiso temporal necesario para ver una serie completa.
