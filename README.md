@@ -94,4 +94,107 @@ HAVING s.titulo = 'Stranger Things'
 >[!IMPORTANT]
 >Este análisis nos permitirá entender el compromiso temporal necesario para ver una serie completa.
 
+#
+
+### 4. Se desea saber el titulo, el año de lanzamiento, género y rating imdb promedio de todas las series que integran el top 3 de los generos mas populares por cantidad de series.
+
+* Por medio del uso de subconsultas se tiene lo siguiente:
+
+```sql
+
+SELECT s.titulo AS 'Titulo de la serie',
+       s.año_lanzamiento AS 'Año de lanzamiento',
+       s.genero AS 'Genero',
+       AVG(e.rating_imdb) AS Rating_IMBD
+FROM series AS s
+LEFT JOIN episodios AS e
+ON s.serie_id = e.serie_id
+WHERE s.genero IN (SELECT genero
+                   FROM (SELECT genero, COUNT(titulo) AS cantidad_series
+					     FROM series
+                         GROUP BY genero
+                         ORDER BY cantidad_series DESC 
+                         LIMIT 3) AS Top_3)
+GROUP BY s.titulo, s.año_lanzamiento, s.genero
+ORDER BY Rating_IMBD DESC
+
+```
+R//
+
+| Título de la serie | Año de lanzamiento | Género           | Rating IMDB |
+|:--------------------:|:--------------------:|:------------------:|:-------------:|
+| Peaky Blinders     | 2013               | Drama histórico  | 9.04545     |
+| Stranger Things    | 2016               | Ciencia ficción  | 8.96087     |
+| The Mandalorian    | 2019               | Ciencia ficción  | 8.91818     |
+| Sherlock           | 2010               | Drama            | 8.89091     |
+| The Crown          | 2016               | Drama histórico  | 8.88182     |
+| Breaking Bad       | 2008               | Drama            | 8.86364     |
+| Black Mirror       | 2011               | Ciencia ficción  | 7.60000     |
+
+
+* Usando CTE's como alternativa se llega a lo siguiente:
+
+```sql
+WITH top_generos AS (
+SELECT genero, COUNT(titulo) AS cantidad_series
+FROM series 
+GROUP BY genero
+ORDER BY cantidad_series DESC 
+LIMIT 3
+)
+
+SELECT s.titulo AS 'Titulo de la serie',
+	   s.año_lanzamiento AS 'Año de lanzamiento',
+       s.genero AS 'Genero', 
+       AVG(e.rating_imdb) AS Rating_IMDB
+FROM series AS s
+LEFT JOIN episodios AS e
+ON s.serie_id = e.serie_id
+WHERE s.genero IN (SELECT genero
+				   FROM top_generos)
+GROUP BY s.titulo, s.año_lanzamiento, s.genero
+ORDER BY Rating_IMDB DESC 
+
+```
+R//
+
+| Título de la serie | Año de lanzamiento | Género           | Rating IMDB |
+|:--------------------:|:--------------------:|:------------------:|:-------------:|
+| Peaky Blinders     | 2013               | Drama histórico  | 9.04545     |
+| Stranger Things    | 2016               | Ciencia ficción  | 8.96087     |
+| The Mandalorian    | 2019               | Ciencia ficción  | 8.91818     |
+| Sherlock           | 2010               | Drama            | 8.89091     |
+| The Crown          | 2016               | Drama histórico  | 8.88182     |
+| Breaking Bad       | 2008               | Drama            | 8.86364     |
+| Black Mirror       | 2011               | Ciencia ficción  | 7.60000     |
+
+Ya sea por medio del uso de CTE's o de subconsultas se llega a la misma lista de series como se puede observar al comparar las tablas obtenidas como resultado de la ejecución de las consultas SQL.
+
+
+* A cotinuación se muestra el top 3 de los generos más populares por cantidad de series:
+
+```sql
+
+SELECT genero, COUNT(titulo) AS cantidad_series
+FROM series 
+GROUP BY genero
+ORDER BY cantidad_series DESC
+LIMIT 3
+
+```
+
+| Género           | Cantidad de series |
+|:------------------:|:--------------------:|
+| Ciencia ficción  | 3                  |
+| Drama            | 2                  |
+| Drama histórico  | 2                  |
+
+
+>[!IMPORTANT]
+>Como se puede observar en las tablas obtenidas, el top 3 de los generos mas populares son Ciencia ficción, Drama histórico y Drama, lo cual se corrobora con la ultima consulta que muestra cuales generos integran este top y cuantas series hay de cada género.
+
+
+
+
+
 ---
