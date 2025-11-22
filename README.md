@@ -98,7 +98,7 @@ HAVING s.titulo = 'Stranger Things'
 
 ### 4. Se desea saber el titulo, el año de lanzamiento, género y rating imdb promedio de todas las series que integran el top 3 de los generos mas populares por cantidad de series.
 
-* A cotinuación se muestra el top 3 de los generos más populares por cantidad de series:
+* Primero es conveniente analizar cuales son los generos mas populares por lo que a cotinuación se muestra el top 3 de los generos más populares por cantidad de series:
 
 ```sql
 
@@ -137,7 +137,7 @@ GROUP BY s.titulo, s.año_lanzamiento, s.genero
 ORDER BY Rating_IMBD DESC
 
 ```
-R//
+R// A continuación se muestran todas las series cuyo género hace parte del top 3 de generos mas populares:
 
 | Título de la serie | Año de lanzamiento | Género           | Rating IMDB |
 |:--------------------:|:--------------------:|:------------------:|:-------------:|
@@ -174,7 +174,7 @@ GROUP BY s.titulo, s.año_lanzamiento, s.genero
 ORDER BY Rating_IMDB DESC 
 
 ```
-R//
+R// A continuación se muestran todas las series cuyo género hace parte del top 3 de generos mas populares:
 
 | Título de la serie | Año de lanzamiento | Género           | Rating IMDB |
 |:--------------------:|:--------------------:|:------------------:|:-------------:|
