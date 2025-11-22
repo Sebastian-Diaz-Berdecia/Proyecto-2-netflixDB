@@ -98,6 +98,24 @@ HAVING s.titulo = 'Stranger Things'
 
 ### 4. Se desea saber el titulo, el año de lanzamiento, género y rating imdb promedio de todas las series que integran el top 3 de los generos mas populares por cantidad de series.
 
+* A cotinuación se muestra el top 3 de los generos más populares por cantidad de series:
+
+```sql
+
+SELECT genero, COUNT(titulo) AS cantidad_series
+FROM series 
+GROUP BY genero
+ORDER BY cantidad_series DESC
+LIMIT 3
+
+```
+
+| Género           | Cantidad de series |
+|:------------------:|:--------------------:|
+| Ciencia ficción  | 3                  |
+| Drama            | 2                  |
+| Drama histórico  | 2                  |
+
 * Por medio del uso de subconsultas se tiene lo siguiente:
 
 ```sql
@@ -171,28 +189,8 @@ R//
 Ya sea por medio del uso de CTE's o de subconsultas se llega a la misma lista de series como se puede observar al comparar las tablas obtenidas como resultado de la ejecución de las consultas SQL.
 
 
-* A cotinuación se muestra el top 3 de los generos más populares por cantidad de series:
-
-```sql
-
-SELECT genero, COUNT(titulo) AS cantidad_series
-FROM series 
-GROUP BY genero
-ORDER BY cantidad_series DESC
-LIMIT 3
-
-```
-
-| Género           | Cantidad de series |
-|:------------------:|:--------------------:|
-| Ciencia ficción  | 3                  |
-| Drama            | 2                  |
-| Drama histórico  | 2                  |
-
-
 >[!IMPORTANT]
->Como se puede observar en las tablas obtenidas, el top 3 de los generos mas populares son Ciencia ficción, Drama histórico y Drama, lo cual se corrobora con la ultima consulta que muestra cuales generos integran este top y cuantas series hay de cada género.
-
+>Como se puede observar en las tablas obtenidas, el top 3 de los generos mas populares son Ciencia ficción, Drama histórico y Drama. Las series cuyo genero se encuentra dentro de este top 3 se pueden observar en las dos ultimas tablas obtenidas.
 
 
 
