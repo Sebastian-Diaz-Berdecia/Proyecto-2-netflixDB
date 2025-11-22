@@ -96,7 +96,7 @@ HAVING s.titulo = 'Stranger Things'
 
 #
 
-### 4. Se desea saber el titulo, el año de lanzamiento, género y rating imdb promedio de todas las series que integran el top 3 de los generos mas populares por cantidad de series.
+### 4. Se desea obtener un listado de todas las series cuyo género hace parte del top 3 de los generos mas populares por cantidad de series, así como tambien conocer el titulo, el año de lanzamiento, género y rating imdb promedio.
 
 * Primero es conveniente analizar cuales son los generos mas populares por lo que a cotinuación se muestra el top 3 de los generos más populares por cantidad de series:
 
