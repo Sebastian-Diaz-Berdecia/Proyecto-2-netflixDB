@@ -2,11 +2,11 @@
 
 El proposito de este ejercicio es por medio de consultas SQL responder algunas preguntas sobre la popularidad y prevalencia de las series y géneros de series contenidos en la base de datos de prueba NetflixDB, así como tambien sobre el compromiso temporal requerido para ver dichas series.
 
-## Índice 
+## 🗂 Índice 
 
 ---
 
-## 🔑 Diagrama entidad relación para la base de datos NetflixDB (DER)
+## 🔑 Diagrama entidad relación para la base de datos NetflixDB (DER) 
 
 NetflixDB es una base de datos que consta de cuatro tablas: _series_, _actuaciones_, _actores_ y _episodios_ en donde se alamacena informacion sobre los episodios y actores de algunas series disponibles en el servicio de streaming de Neflix. A continuacion se muestra su diagrama entidad relación.
 
