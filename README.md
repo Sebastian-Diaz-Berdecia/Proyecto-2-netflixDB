@@ -1,6 +1,6 @@
 # 📊 Preguntas NetflixDB en proceso...
 
-El proposito de este ejercicio es por medio de consultas SQL responder algunas preguntas sobre la popularidad y prevalencia de las series y géneros de series contenidos en la base de datos de prueba NetflixDB, así como tambien sobre el compromiso temporal requerido para visualizarlas.
+El proposito de este ejercicio es por medio de consultas SQL responder algunas preguntas sobre la popularidad y prevalencia de las series y géneros de series contenidos en la base de datos de prueba NetflixDB, así como tambien sobre el compromiso temporal requerido para ver dichas series.
 
 ## Índice 
 
