@@ -1,4 +1,4 @@
-# 📊 Analisis de la popularidad de series y géneros de series en NetflixDB
+# 📊 Análisis de la popularidad de series y géneros de series en NetflixDB
 
 El proposito de este ejercicio es por medio de consultas SQL responder algunas preguntas sobre la popularidad y prevalencia de las series y géneros de series contenidos en la base de datos de prueba [NetflixDB](https://github.com/Sebastian-Diaz-Berdecia/NetflixDB-MySQL-Workbench), así como tambien sobre el compromiso temporal requerido para ver dichas series.
 
