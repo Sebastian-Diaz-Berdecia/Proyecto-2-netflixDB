@@ -4,6 +4,9 @@ El proposito de este ejercicio es por medio de consultas SQL responder algunas p
 
 ## 🗂 Índice 
 
+* ### [Diagrama entidad relación](https://github.com/Sebastian-Diaz-Berdecia/Proyecto-2-netflixDB/tree/main#-diagrama-entidad-relaci%C3%B3n-para-la-base-de-datos-netflixdb-der)
+* ### Preguntas
+
 ---
 
 ## 🔑 Diagrama entidad relación para la base de datos NetflixDB (DER) 
