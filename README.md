@@ -368,7 +368,7 @@ La ejecución de esta consulta da por resultado la siguiente tabla/lista:
 | Black Mirror          | 11                     | 7.60000                |
 
 
-* Acomodando la lista de series por rating de mayor a menor se observa que el top 3 lo integran las siguientes series: Arcane, Game of Thrones y Peaky Blinders. De esta forma observamos como de cuatro formas diferentes podemos llegar al mismo resultado.
+* Organizando la lista de series por rating imdb de mayor a menor se observa que las tres series mas populares son las siguientes: Arcane, Game of Thrones y Peaky Blinders. De esta forma observamos como de cuatro formas diferentes podemos llegar al mismo resultado.
 
 
 >[!NOTE]
