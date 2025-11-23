@@ -1,6 +1,6 @@
 # 📊 Preguntas NetflixDB en proceso...
 
-El proposito de este proyecto es explicar de forma breve el proceso que se debe realizar para la creación e inicialización de la base de datos NetflixDB en MySQL Workbench.
+El proposito de este ejercicio es por medio de consultas SQL responder algunas preguntas sobre la popularidad y prevalencia de las series y géneros de series contenidos en la base de datos de prueba NetflixDB, así como tambien sobre el compromiso temporal requerido para visualizarlas.
 
 ## Índice 
 
@@ -196,7 +196,9 @@ Ya sea por medio del uso de CTE's o de subconsultas se llega a la misma lista de
 
 ### 5. Ahora se busca generar un listado o ranking de series que contenga el titulo de la serie, la cantidad de episodios de cada serie y el rating imdb promedio de cada una de ellas. El objetivo es identificar las series más exitosas basandonos en el rating imdb promedio de cada serie y en la cantidad de episodios.
 
-* a. Mediante el uso de JOINS tenemos la siguiente consulta:
+* ####  Hay diversas formas de obtener o formar esta lista en base a diferentes formas de estructurar nuestras consultas, a continuación se muestran algunas de ellas:
+
+* A. Mediante el uso de JOINS tenemos la siguiente consulta:
 
 ```sql
 
@@ -230,7 +232,7 @@ La ejecución de esta consulta da por resultado la siguiente tabla/lista:
 | Black Mirror          | 11                     | 7.60000                |
 
 
-* b. Mediante el uso de 2 CTE's: 
+* B. Mediante el uso de 2 CTE's: 
 
 ```sql
 
@@ -283,7 +285,7 @@ La ejecución de esta consulta da por resultado la siguiente tabla/lista:
 | Black Mirror          | 11                     | 7.60000                |
 
 
-* c. Forma alternativa mediante el uso de 1 CTE: 
+* C. Forma alternativa mediante el uso de 1 CTE: 
 
 
 ```sql
@@ -325,7 +327,7 @@ La ejecución de esta consulta da por resultado la siguiente tabla/lista:
 | Black Mirror          | 11                     | 7.60000                |
 
 
-* d. Forma alternativa mas simple mediante el uso de 1 CTE:
+* D. Forma alternativa mas simple mediante el uso de 1 CTE:
 
 ```sql
 
@@ -365,8 +367,14 @@ La ejecución de esta consulta da por resultado la siguiente tabla/lista:
 | The Office            | 12                     | 8.33333                |
 | Black Mirror          | 11                     | 7.60000                |
 
+
+* Acomodando la lista de series por rating de mayor a menor se observa que el top 3 lo integran las siguientes series: Arcane, Game of Thrones y Peaky Blinders. De esta forma observamos como de cuatro formas diferentes podemos llegar al mismo resultado.
+
+
 >[!NOTE]
->Sea cual se la consulta que se emplee para generar dicha lista el resultado será el mismo.
+>Sea cual sea la consulta que se emplee para generar dicha lista el resultado será el mismo.
+
+
 
 ---
 
