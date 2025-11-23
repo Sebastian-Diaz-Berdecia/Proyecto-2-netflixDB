@@ -192,7 +192,204 @@ Ya sea por medio del uso de CTE's o de subconsultas se llega a la misma lista de
 >[!IMPORTANT]
 >Como se puede observar en las tablas obtenidas, el top 3 de los generos mas populares son Ciencia ficción, Drama histórico y Drama. Las series cuyo genero se encuentra dentro de este top 3 se pueden observar en las dos ultimas tablas obtenidas.
 
+#
+
+### 5. Ahora se busca generar un listado o ranking de series que contenga el titulo de la serie, la cantidad de episodios de cada serie y el rating imdb promedio de cada una de ellas. El objetivo es identificar las series más exitosas basandonos en el rating imdb promedio de cada serie y en la cantidad de episodios.
+
+* a. Mediante el uso de JOINS tenemos la siguiente consulta:
+
+```sql
+
+SELECT s.titulo AS 'Titulo de la serie',
+       COUNT(e.titulo) AS 'Cantidad de episodios',
+       AVG(e.rating_imdb) AS 'Rating IMDB promedio'
+FROM series AS s
+LEFT JOIN episodios AS e
+ON s.serie_id = e.serie_id
+GROUP BY s.titulo
+ORDER BY AVG(e.rating_imdb) DESC, COUNT(e.titulo) DESC
+
+``` 
+
+La ejecución de esta consulta da por resultado la siguiente tabla/lista: 
+
+| Título de la serie   | Cantidad de episodios | Rating IMDB promedio |
+|:-----------------------:|:------------------------:|:------------------------:|
+| Arcane                | 11                     | 9.22727                |
+| Game of Thrones       | 12                     | 9.16667                |
+| Peaky Blinders        | 11                     | 9.04545                |
+| Stranger Things       | 23                     | 8.96087                |
+| The Mandalorian       | 11                     | 8.91818                |
+| Sherlock              | 11                     | 8.89091                |
+| The Crown             | 11                     | 8.88182                |
+| Breaking Bad          | 11                     | 8.86364                |
+| Narcos                | 11                     | 8.83636                |
+| BoJack Horseman       | 11                     | 8.81818                |
+| The Witcher           | 11                     | 8.79091                |
+| The Office            | 12                     | 8.33333                |
+| Black Mirror          | 11                     | 7.60000                |
 
 
+* b. Mediante el uso de 2 CTE's: 
+
+```sql
+
+WITH cantidad_episodios AS (
+
+SELECT serie_id, COUNT(*) AS numero_de_episodios
+FROM episodios
+GROUP BY serie_id
+ORDER BY numero_de_episodios DESC
+
+),
+
+rating_promedio AS (
+
+SELECT serie_id, AVG(rating_imdb) AS rating_imdb
+FROM episodios 
+GROUP BY serie_id
+ORDER BY rating_imdb DESC 
+
+)
+
+SELECT s.titulo AS 'Titulo de la serie',
+       c.numero_de_episodios AS 'Cantidad de episodios',
+       r.rating_imdb AS 'Rating IMDB promedio'
+FROM series AS s
+LEFT JOIN cantidad_episodios AS c
+ON s.serie_id = c.serie_id
+LEFT JOIN rating_promedio AS r
+ON s.serie_id = r.serie_id
+ORDER BY r.rating_imdb DESC, c.numero_de_episodios DESC
+
+```
+
+La ejecución de esta consulta da por resultado la siguiente tabla/lista: 
+
+| Título de la serie   | Cantidad de episodios | Rating IMDB promedio |
+|:-----------------------:|:------------------------:|:------------------------:|
+| Arcane                | 11                     | 9.22727                |
+| Game of Thrones       | 12                     | 9.16667                |
+| Peaky Blinders        | 11                     | 9.04545                |
+| Stranger Things       | 23                     | 8.96087                |
+| The Mandalorian       | 11                     | 8.91818                |
+| Sherlock              | 11                     | 8.89091                |
+| The Crown             | 11                     | 8.88182                |
+| Breaking Bad          | 11                     | 8.86364                |
+| Narcos                | 11                     | 8.83636                |
+| BoJack Horseman       | 11                     | 8.81818                |
+| The Witcher           | 11                     | 8.79091                |
+| The Office            | 12                     | 8.33333                |
+| Black Mirror          | 11                     | 7.60000                |
+
+
+* c. Forma alternativa mediante el uso de 1 CTE: 
+
+
+```sql
+
+WITH ranking_series AS (
+
+SELECT serie_id, COUNT(*) AS cantidad_episodios, AVG(rating_imdb) AS rating_promedio
+FROM episodios
+GROUP BY serie_id
+
+)
+
+SELECT s.titulo AS 'Titulo de la serie',
+       r.cantidad_episodios AS 'Cantidad de episodios',
+       r.rating_promedio AS 'Rating IMDB promedio'
+FROM series AS s
+LEFT JOIN ranking_series AS r
+ON s.serie_id = r.serie_id
+ORDER BY r.rating_promedio DESC, r.cantidad_episodios DESC 
+
+```
+
+La ejecución de esta consulta da por resultado la siguiente tabla/lista: 
+
+| Título de la serie   | Cantidad de episodios | Rating IMDB promedio |
+|:-----------------------:|:------------------------:|:------------------------:|
+| Arcane                | 11                     | 9.22727                |
+| Game of Thrones       | 12                     | 9.16667                |
+| Peaky Blinders        | 11                     | 9.04545                |
+| Stranger Things       | 23                     | 8.96087                |
+| The Mandalorian       | 11                     | 8.91818                |
+| Sherlock              | 11                     | 8.89091                |
+| The Crown             | 11                     | 8.88182                |
+| Breaking Bad          | 11                     | 8.86364                |
+| Narcos                | 11                     | 8.83636                |
+| BoJack Horseman       | 11                     | 8.81818                |
+| The Witcher           | 11                     | 8.79091                |
+| The Office            | 12                     | 8.33333                |
+| Black Mirror          | 11                     | 7.60000                |
+
+
+* d. Forma alternativa mas simple mediante el uso de 1 CTE:
+
+```sql
+
+WITH ranking_series AS (
+
+SELECT s.titulo AS 'Titulo de la serie',
+       COUNT(e.titulo) AS 'Cantidad de episodios',
+       AVG(e.rating_imdb) AS 'Rating IMDB promedio'
+FROM series AS s
+LEFT JOIN episodios AS e
+ON s.serie_id = e.serie_id
+GROUP BY s.titulo
+ORDER BY AVG(e.rating_imdb) DESC, COUNT(e.titulo) DESC
+
+)
+
+SELECT *
+FROM ranking_series
+
+```
+
+La ejecución de esta consulta da por resultado la siguiente tabla/lista: 
+
+| Título de la serie   | Cantidad de episodios | Rating IMDB promedio |
+|:-----------------------:|:------------------------:|:------------------------:|
+| Arcane                | 11                     | 9.22727                |
+| Game of Thrones       | 12                     | 9.16667                |
+| Peaky Blinders        | 11                     | 9.04545                |
+| Stranger Things       | 23                     | 8.96087                |
+| The Mandalorian       | 11                     | 8.91818                |
+| Sherlock              | 11                     | 8.89091                |
+| The Crown             | 11                     | 8.88182                |
+| Breaking Bad          | 11                     | 8.86364                |
+| Narcos                | 11                     | 8.83636                |
+| BoJack Horseman       | 11                     | 8.81818                |
+| The Witcher           | 11                     | 8.79091                |
+| The Office            | 12                     | 8.33333                |
+| Black Mirror          | 11                     | 7.60000                |
+
+>[!NOTE]
+>Sea cual se la consulta que se emplee para generar dicha lista el resultado será el mismo.
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
